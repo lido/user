@@ -52,6 +52,7 @@ public class UserConverter {
 
     public UserDTO toUserDTO(User user){
         return UserDTO.builder()
+                .id(user.getId())
                 .name(user.getName())
                 .email(user.getEmail())
                 .password(user.getPassword())
@@ -66,6 +67,7 @@ public class UserConverter {
 
     public AddressDTO toAdressDTO(Address address){
         return AddressDTO.builder()
+                .id(address.getId())
                 .cep(address.getCep())
                 .city(address.getCity())
                 .state(address.getState())
@@ -81,8 +83,21 @@ public class UserConverter {
 
     public PhoneDTO toPhoneDTO(Phone phone){
         return PhoneDTO.builder()
+                .id(phone.getId())
                 .ddd(phone.getDdd())
                 .number(phone.getNumber())
                 .build();
+    }
+
+    public User upadateUser(UserDTO userDTO, User entity){
+        return User.builder()
+                .name(userDTO.getName() != null ? userDTO.getName() : entity.getName())
+                .id(entity.getId())
+                .password(userDTO.getPassword() != null ? userDTO.getPassword() : entity.getPassword())
+                .email(userDTO.getEmail() !=null ? userDTO.getEmail() : entity.getEmail())
+                .addresses(entity.getAddresses())
+                .phones(entity.getPhones())
+                .build();
+
     }
 }
