@@ -19,7 +19,7 @@ public class JwtUtil {
 
     // Gera um token JWT com o nome de usuário e validade de 1 hora
     public String generateToken(String username) {
-        return "Bearer "+Jwts.builder()
+        return Jwts.builder()
                 .setSubject(username) // Define o nome de usuário como o assunto do token
                 .setIssuedAt(new Date()) // Define a data e hora de emissão do token
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // Define a data e hora de expiração (1 hora a partir da emissão)
