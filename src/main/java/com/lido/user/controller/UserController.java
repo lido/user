@@ -2,7 +2,6 @@ package com.lido.user.controller;
 
 import com.lido.user.business.UserService;
 import com.lido.user.business.dto.UserDTO;
-import com.lido.user.infrastructure.entity.User;
 import com.lido.user.infrastructure.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +36,7 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<User> findUserByEmail(@RequestParam("email") String email){
+    public ResponseEntity<UserDTO> findUserByEmail(@RequestParam("email") String email){
         return ResponseEntity.ok(userService.findUserByEmail(email));
     }
 

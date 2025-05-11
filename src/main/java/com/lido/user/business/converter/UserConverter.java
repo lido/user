@@ -52,6 +52,7 @@ public class UserConverter {
 
     public UserDTO toUserDTO(User user){
         return UserDTO.builder()
+                .id(user.getId())
                 .name(user.getName())
                 .email(user.getEmail())
                 .password(user.getPassword())
@@ -66,6 +67,7 @@ public class UserConverter {
 
     public AddressDTO toAdressDTO(Address address){
         return AddressDTO.builder()
+                .id(address.getId())
                 .cep(address.getCep())
                 .city(address.getCity())
                 .state(address.getState())
@@ -81,6 +83,7 @@ public class UserConverter {
 
     public PhoneDTO toPhoneDTO(Phone phone){
         return PhoneDTO.builder()
+                .id(phone.getId())
                 .ddd(phone.getDdd())
                 .number(phone.getNumber())
                 .build();

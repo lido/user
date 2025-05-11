@@ -42,10 +42,17 @@ public class UserService {
         return userRepository.existsByEmail(email);
     }
 
-    public User findUserByEmail(String email){
-        return userRepository.findByEmail(email).orElseThrow(
-                () -> new ResourceNotFoundException("Email not found " + email)
-        );
+    public UserDTO findUserByEmail(String email){
+        try {
+            return userConverter.toUserDTO(
+                    userRepository.findByEmail(email)
+                            .orElseThrow(
+                    () -> new ResourceNotFoundException("Email not found " + email))
+            );
+        } catch (ResourceNotFoundException e) {
+            throw new ResourceNotFoundException("Email not found " + email, e.getCause());
+        }
+
     }
 
     public void deleteUserByEmail(String email){
