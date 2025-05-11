@@ -85,4 +85,16 @@ public class UserConverter {
                 .number(phone.getNumber())
                 .build();
     }
+
+    public User upadateUser(UserDTO userDTO, User entity){
+        return User.builder()
+                .name(userDTO.getName() != null ? userDTO.getName() : entity.getName())
+                .id(entity.getId())
+                .password(userDTO.getPassword() != null ? userDTO.getPassword() : entity.getPassword())
+                .email(userDTO.getEmail() !=null ? userDTO.getEmail() : entity.getEmail())
+                .addresses(entity.getAddresses())
+                .phones(entity.getPhones())
+                .build();
+
+    }
 }
