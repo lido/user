@@ -15,8 +15,15 @@ public class PhoneController {
     private final PhoneService phoneService;
 
     @PutMapping
-    public ResponseEntity<PhoneDTO> updatePhone(@RequestParam("id") Long idPhone, @RequestBody PhoneDTO phoneDTO){
+    public ResponseEntity<PhoneDTO> updatePhone(@RequestParam("id") Long idPhone,
+                                                @RequestBody PhoneDTO phoneDTO){
         return ResponseEntity.ok(phoneService.updatePhone(idPhone, phoneDTO));
+    }
+
+    @PostMapping
+    public ResponseEntity<PhoneDTO> resgisterPhone(@RequestHeader("Authorization") String token,
+                                                   @RequestBody PhoneDTO phoneDTO){
+        return ResponseEntity.ok(phoneService.registerPhone(token, phoneDTO));
     }
 }
 

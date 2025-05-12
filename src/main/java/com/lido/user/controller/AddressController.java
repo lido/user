@@ -18,4 +18,10 @@ public class AddressController {
                                                     @RequestBody AddressDTO addressDTO){
         return ResponseEntity.ok(addressService.updateAddress(idAddress, addressDTO));
     }
+
+    @PostMapping
+    public ResponseEntity<AddressDTO> registerAddress(@RequestHeader("Authorization") String token,
+                                                    @RequestBody AddressDTO addressDTO){
+        return ResponseEntity.ok(addressService.registerAddress(token, addressDTO));
+    }
 }

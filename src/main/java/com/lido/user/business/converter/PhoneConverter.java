@@ -4,6 +4,8 @@ import com.lido.user.business.dto.PhoneDTO;
 import com.lido.user.infrastructure.entity.Phone;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class PhoneConverter {
 
@@ -20,6 +22,29 @@ public class PhoneConverter {
                 .id(phone.getId())
                 .ddd(phone.getDdd())
                 .number(phone.getNumber())
+                .build();
+    }
+
+    public List<Phone> toPhonesList(List<PhoneDTO> phoneDTOS){
+        return phoneDTOS.stream().map(this::toPhone).toList();
+    }
+
+    public Phone toPhone(PhoneDTO phoneDTO){
+        return Phone.builder()
+                .ddd(phoneDTO.getDdd())
+                .number(phoneDTO.getNumber())
+                .build();
+    }
+
+    public List<PhoneDTO> toPhonesListDTO(List<Phone> phones){
+        return phones.stream().map(this::toPhoneDTO).toList();
+    }
+
+    public Phone toPhoneEntity(Long userId, PhoneDTO phoneDTO){
+        return Phone.builder()
+                .UserId(userId)
+                .ddd(phoneDTO.getDdd())
+                .number(phoneDTO.getNumber())
                 .build();
     }
 }
